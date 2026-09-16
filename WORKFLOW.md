@@ -1,5 +1,7 @@
-- First bad commit: 87dc67d
-- Root cause: BULK20 used > 5 instead of >= 5
-- Branching approach: use a feature branch, then merge after review
-- Secret cleanup: remove the secret from the repo and rewrite history when necessary
-- Rewriting history: acceptable before teammates pull it, not acceptable after they have pulled it
+- The regression started at commit 87dc67d. That commit introduced the BULK20 rule as `items.length > 5`, which is wrong because orders with exactly 5 items should also get the 20% discount.
+
+- GitHub Flow. It is simple, keeps work in short-lived feature branches, and is easy for a small team to review and merge without the extra complexity of Git Flow. It also fits a project where changes are merged regularly into main.
+
+- You would need to rewrite the repository history and force-push the cleaned history to the remote so the secret is no longer present in any commit object. In practice, that means deleting the secret from the current repo, removing it from all historical commits, and having every teammate reset or re-clone based on the new history. This assignment did not require the full rewrite because the secret was only being removed from the current tracked state and the exercise was focused on the Git recovery workflow rather than a production-grade secret purge.
+
+- The history was still local and not shared with anyone else, so rewriting it was safe for the repository owner. After teammates had already pulled or based work on the old commits, rewriting history would break their local repos and create conflicts because they would be working from a different commit history.
