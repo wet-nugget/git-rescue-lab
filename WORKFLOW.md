@@ -1,0 +1,5 @@
+- First bad commit: 87dc67d
+- Root cause: BULK20 used > 5 instead of >= 5
+- Branching approach: use a feature branch, then merge after review
+- Secret cleanup: remove the secret from the repo and rewrite history when necessary
+- Rewriting history: acceptable before teammates pull it, not acceptable after they have pulled it
